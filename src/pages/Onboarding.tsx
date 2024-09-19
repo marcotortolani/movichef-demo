@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLocation } from 'wouter'
 
-import loogoLightBrand from '../assets/images/logo_light.webp'
+import logoLightBrand from '../assets/images/logo_light.webp'
 import onboardingBkg01 from '../assets/images/fondo_onboarding_1.webp'
 import onboardingBkg02 from '../assets/images/fondo_onboarding_2.webp'
 import onboardingBkg03 from '../assets/images/fondo_onboarding_3.webp'
@@ -29,11 +29,11 @@ export default function Onboarding() {
   }
 
   return (
-    <main className="w-screen h-[100dvh] overflow-hidden relative">
+    <main className="w-screen h-dvh overflow-hidden relative flex flex-col items-center">
       <div className=" absolute top-6 z-40 w-full">
         <img
-          className=" w-1/4 mx-auto"
-          src={loogoLightBrand}
+          className=" w-1/4 max-w-[150px] mx-auto"
+          src={logoLightBrand}
           alt="Logo Brand Light"
         />
       </div>
@@ -42,7 +42,7 @@ export default function Onboarding() {
         style={{ transform: `translateX(-${(page - 1) * 100}%)` }}
       >
         <section
-          className="w-full h-full flex-shrink-0 flex flex-col justify-center items-center"
+          className="w-full h-full flex-shrink-0 flex flex-col justify-center items-center gap-10 pt-10"
           style={{
             backgroundImage: `url(${onboardingBkg01})`,
           }}
@@ -52,11 +52,12 @@ export default function Onboarding() {
             src={onboarding01}
             alt="On Boarding image cooking"
           />
+
           <div className=" w-full flex flex-col items-center gap-3">
-            <h2 className=" text-white font-bold text-2xl">
+            <h2 className=" text-textLight font-poppinsExtBold text-xl">
               ¿No sabes qué cocinar?
             </h2>
-            <div className=" px-2 text-white text-center">
+            <div className=" px-2 text-textLight leading-5 font-poppinsReg text-xs text-center">
               <p>¡Chef Virtual viene a resolverte el problema!</p>
               <p>Te generamos una receta 100% personalizable.</p>
             </div>
@@ -64,7 +65,7 @@ export default function Onboarding() {
 
           <button
             onClick={handleNext}
-            className=" bg-yellow-500 font-bold text-2xl uppercase px-6 py-2 rounded-xl mt-4"
+            className=" bg-primary font-poppinsBold text-2xl uppercase px-6 py-2 rounded-xl mt-4"
           >
             Comenzar
           </button>
@@ -75,10 +76,7 @@ export default function Onboarding() {
           heroImage={onboarding02}
           title="Con tus gustos"
           text="Contanos tus gustos y te vamos a generar recetas con tus ingredientes favoritos"
-        >
-          <button onClick={handleEnd}>Saltar</button>
-          <button onClick={handleNext}>Siguiente</button>
-        </Section>
+        />
 
         <Section
           bkgImage={onboardingBkg03}
@@ -86,41 +84,70 @@ export default function Onboarding() {
           title="Con lo que tengas"
           text="Si te sobró comida o si tenes alimentos que necesitas utilizar,
                 te daremos una receta para que puedas aprovecharlos"
-        >
-          <button onClick={handleEnd}>Saltar</button>
-          <button onClick={handleNext}>Siguiente</button>
-        </Section>
+        />
 
         <Section
           bkgImage={onboardingBkg01}
           heroImage={onboarding04}
           title="Modo Gourmet"
           text="Si quieres una receta para una ocasión especial, activa este modo para descubrir las sensaciones de la comida"
-        >
-          <div />
-          <button onClick={handleEnd}>Finalizar</button>
-        </Section>
+        />
       </div>
 
       {page > 1 && (
-        <div className=" absolute bottom-10 pointer-events-none flex items-center justify-center gap-1 mx-auto w-full">
-          {new Array(3).fill(0).map((_, index) => (
-            <span
-              className={` ${
-                index + 2 === page ? 'size-3 bg-white' : 'size-2 bg-white/50'
-              } rounded-full`}
-            ></span>
-          ))}
+        <div className=" absolute z-50 w-full max-w-2xl  pointer-events-auto bottom-10 flex items-center justify-between px-8  ">
+          <button
+            className={` ${
+              page === 4 && ' opacity-0 pointer-events-none'
+            } font-poppinsReg text-sm text-textLight`}
+            onClick={handleEnd}
+          >
+            Saltar
+          </button>
+          <div className=" flex items-center gap-1">
+            {new Array(3).fill(0).map((_, index) => (
+              <span
+                key={index}
+                className={` ${
+                  index + 2 === page
+                    ? 'size-2.5 bg-primaryLight'
+                    : 'size-1.5 bg-primaryLight/40'
+                } rounded-full`}
+              ></span>
+            ))}
+          </div>
+          {page < 4 ? (
+            <button
+              className=" font-poppinsSemBold text-sm text-textLight"
+              onClick={handleNext}
+            >
+              Siguiente
+            </button>
+          ) : (
+            <button
+              className=" font-poppinsSemBold text-sm text-textLight"
+              onClick={handleEnd}
+            >
+              Finalizar
+            </button>
+          )}
         </div>
       )}
     </main>
   )
 }
 
-const Section = ({ bkgImage, heroImage, title, text, children }) => {
+interface SectionProps {
+  bkgImage: string
+  heroImage: string
+  title: string
+  text: string
+}
+
+const Section = ({ bkgImage, heroImage, title, text }: SectionProps) => {
   return (
     <section
-      className="w-full h-full flex-shrink-0 flex flex-col justify-center items-center"
+      className="w-full z-0 h-full flex-shrink-0 flex flex-col justify-center pointer-events-none items-center gap-10 pt-8 px-4"
       style={{
         backgroundImage: `url(${bkgImage})`,
       }}
@@ -131,14 +158,10 @@ const Section = ({ bkgImage, heroImage, title, text, children }) => {
         alt="On Boarding image cooking"
       />
       <div className=" w-full flex flex-col items-center gap-3">
-        <h2 className=" text-white font-bold text-2xl">{title}</h2>
-        <div className=" px-2 text-white text-center">
-          <p>{text}</p>
-        </div>
-      </div>
-
-      <div className="flex gap-4 w-full justify-between px-4 text-white absolute bottom-10">
-        {children}
+        <h2 className=" text-textLight font-poppinsExtBold text-xl">{title}</h2>
+        <p className=" px-4 text-textLight leading-5 font-poppinsReg text-sm text-center">
+          {text}
+        </p>
       </div>
     </section>
   )

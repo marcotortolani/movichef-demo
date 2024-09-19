@@ -1,27 +1,38 @@
-import { Link, Route, Switch } from 'wouter'
-import Onboarding from './pages/Onboarding'
-import OptionsPrepare from './pages/OptionsPrepare'
-import BeginUser from './pages/BeginUser'
+import { lazy, Suspense } from 'react'
+import { Route, Switch } from 'wouter'
+import { useStore } from './store/AppStore'
+import Loading from './Loading'
+
+const Onboarding = lazy(() => import('./pages/Onboarding'))
+const OptionsPrepare = lazy(() => import('./pages/OptionsPrepare'))
+const BeginUser = lazy(() => import('./pages/BeginUser'))
+const OptionsMeal = lazy(() => import('./pages/OptionsMeal'))
+const OptionsDessert = lazy(() => import('./pages/OptionsDessert'))
+const OptionsDrinks = lazy(() => import('./pages/OptionsDrinks'))
 
 function App() {
-  return (
-    <div className="">
-      {/* <header className=" flex gap-6 bg-neutral-500 text-sky-300">
-        <Link href="/onboarding">On Boarding</Link>
-        <Link href="/begin-user">Begin User</Link>
-        <Link href="/prepare">Options to prepare</Link>
-      </header> */}
+  const userName = useStore((state) => state.userName)
 
+  return (
+    <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/onboarding" component={Onboarding} />
         <Route path="/begin-user" component={BeginUser} />
         <Route path="/prepare" component={OptionsPrepare} />
-        <Route path="/*" component={OptionsPrepare} />
+        <Route path="/lunch" component={OptionsMeal} />
+        <Route path="/dinner" component={OptionsMeal} />
+        <Route path="/dessert" component={OptionsDessert} />
+        <Route path="/drinks" component={OptionsDrinks} />
+
+        <Route
+          path="/*"
+          component={userName !== null ? OptionsPrepare : Onboarding}
+        />
 
         {/* Default route in a switch */}
         <Route>404: No such page!</Route>
       </Switch>
-    </div>
+    </Suspense>
   )
 }
 
