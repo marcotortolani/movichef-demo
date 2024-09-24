@@ -51,7 +51,7 @@ export default function OptionsPrepare() {
   }
 
   return (
-    <main className=" bg-neutral-100 w-full h-dvh flex flex-col items-center justify-evenly overflow-hidden gap-2 px-2">
+    <main className=" bg-bkg w-full h-dvh flex flex-col items-center justify-evenly overflow-hidden gap-2 px-2">
       <a href="/" className=" w-full">
         <img
           className=" w-1/4 max-w-[150px] mx-auto mt-4"

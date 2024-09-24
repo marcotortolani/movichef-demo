@@ -38,38 +38,17 @@ export default function Onboarding() {
         />
       </div>
       <div
-        className="flex transition-transform duration-300 ease-in-out h-full"
+        className="w-full flex transition-transform duration-300 ease-in-out h-full"
         style={{ transform: `translateX(-${(page - 1) * 100}%)` }}
       >
-        <section
-          className="w-full h-full flex-shrink-0 flex flex-col justify-center items-center gap-10 pt-10"
-          style={{
-            backgroundImage: `url(${onboardingBkg01})`,
-          }}
-        >
-          <img
-            className=" w-3/4 max-w-[300px]"
-            src={onboarding01}
-            alt="On Boarding image cooking"
-          />
-
-          <div className=" w-full flex flex-col items-center gap-3">
-            <h2 className=" text-textLight font-poppinsExtBold text-xl">
-              ¿No sabes qué cocinar?
-            </h2>
-            <div className=" px-2 text-textLight leading-5 font-poppinsReg text-xs text-center">
-              <p>¡Chef Virtual viene a resolverte el problema!</p>
-              <p>Te generamos una receta 100% personalizable.</p>
-            </div>
-          </div>
-
-          <button
-            onClick={handleNext}
-            className=" bg-primary font-poppinsBold text-2xl uppercase px-6 py-2 rounded-xl mt-4"
-          >
-            Comenzar
-          </button>
-        </section>
+        <Section
+          bkgImage={onboardingBkg01}
+          heroImage={onboarding01}
+          title="¿No sabes qué cocinar?"
+          text="¡Chef Virtual viene a resolverte el problema! Te generamos una receta 100% personalizable."
+          button="Comenzar"
+          onClick={handleNext}
+        />
 
         <Section
           bkgImage={onboardingBkg02}
@@ -82,8 +61,7 @@ export default function Onboarding() {
           bkgImage={onboardingBkg03}
           heroImage={onboarding03}
           title="Con lo que tengas"
-          text="Si te sobró comida o si tenes alimentos que necesitas utilizar,
-                te daremos una receta para que puedas aprovecharlos"
+          text="Si te sobró comida o si tenes alimentos que necesitas utilizar, te daremos una receta para que puedas aprovecharlos"
         />
 
         <Section
@@ -142,12 +120,21 @@ interface SectionProps {
   heroImage: string
   title: string
   text: string
+  button?: string
+  onClick?: () => void
 }
 
-const Section = ({ bkgImage, heroImage, title, text }: SectionProps) => {
+const Section = ({
+  bkgImage,
+  heroImage,
+  title,
+  text,
+  button,
+  onClick,
+}: SectionProps) => {
   return (
     <section
-      className="w-full z-0 h-full flex-shrink-0 flex flex-col justify-center pointer-events-none items-center gap-10 pt-8 px-4"
+      className="w-full z-20 h-full flex-shrink-0 flex flex-col justify-center pointer-events-none items-center gap-10 pt-8 px-4"
       style={{
         backgroundImage: `url(${bkgImage})`,
       }}
@@ -157,12 +144,20 @@ const Section = ({ bkgImage, heroImage, title, text }: SectionProps) => {
         src={heroImage}
         alt="On Boarding image cooking"
       />
-      <div className=" w-full flex flex-col items-center gap-3">
-        <h2 className=" text-textLight font-poppinsExtBold text-xl">{title}</h2>
-        <p className=" px-4 text-textLight leading-5 font-poppinsReg text-sm text-center">
+      <div className=" w-full max-w-[500px] flex flex-col items-center gap-3">
+        <h2 className=" text-textLight font-poppinsExtBold text-xl xl:text-2xl">{title}</h2>
+        <p className=" w-[94%] text-textLight leading-5 font-poppinsReg text-sm md:text-base xl:text-lg text-center">
           {text}
         </p>
       </div>
+      {button && (
+        <button
+          onClick={onClick}
+          className=" pointer-events-auto bg-primary font-poppinsBold text-2xl uppercase px-6 py-2 rounded-xl mt-4"
+        >
+          {button}
+        </button>
+      )}
     </section>
   )
 }

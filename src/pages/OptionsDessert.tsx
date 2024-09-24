@@ -121,7 +121,7 @@ export default function OptionsDessert() {
     }
   }
   return (
-    <main className=" bg-neutral-100 w-full h-dvh pb-20 flex flex-col items-center justify-evenly overflow-x-hidden gap-2 px-2">
+    <main className=" bg-bkg w-full h-dvh pb-20 flex flex-col items-center justify-evenly overflow-x-hidden gap-2 px-2">
       <a href="/" className=" w-full">
         <img
           className=" w-1/4 max-w-[150px] mx-auto mt-4"
