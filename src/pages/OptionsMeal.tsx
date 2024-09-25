@@ -156,7 +156,8 @@ const INGREDIENTS = {
 export default function OptionsMeal() {
   const [_, navigate] = useLocation()
   // const userName = useStore((state) => state.userName)
-  const optionSelected = useStore((state) => state.optionSelected)
+  
+  //const optionSelected = useStore((state) => state.optionSelected)
   const restrictionSelected = useStore((state) => state.restrictionSelected)
   const restrictionAdded = useStore((state) => state.restrictionAdded)
   const mealOptions = useStore((state) => state.mealOptions)
