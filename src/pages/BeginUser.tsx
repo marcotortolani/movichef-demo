@@ -6,7 +6,7 @@ import { useStore } from '../store/AppStore'
 import logoDarkBrand from '../assets/images/logo_dark.webp'
 import beginImage from '../assets/images/comenzar.webp'
 export default function BeginUser() {
-  const userName = useStore((state) => state.userName)
+  const userName = useStore((state) => state.userName) || ''
   const updateUserName = useStore((state) => state.updateUserName)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

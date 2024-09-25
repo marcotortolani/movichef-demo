@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from 'react'
+import { useLocation } from 'wouter'
 import logoDarkBrand from '../assets/images/logo_dark.webp'
 
 import ordenarSVG from '../assets/images/SVG/ordenar_1.svg'
@@ -50,7 +52,7 @@ export default function RouletteChores({
   // const [rouletteSound] = useSound(sounds?.rouletteWheel, {
   //   soundEnabled: soundOn,
   // })
-  // const navigate = useNavigate()
+  const [_, navigate] = useLocation()
 
   const SECTIONS_WHEEL = DATA_CHORES.length
 
@@ -83,6 +85,11 @@ export default function RouletteChores({
       setChoresSelected((prev) => [...prev, catWheel])
     }, TIME_SPINNING * 1000 + 500)
   }, [catWheel])
+
+  const handleNext = (path: string | null) => {
+    if (path === null) return
+    navigate(path)
+  }
 
   return (
     <div
@@ -186,17 +193,17 @@ export default function RouletteChores({
 
         <div className=" flex items-center justify-between gap-5 w-full">
           <button
+            onClick={() => handleNext('/recipes')}
+            className={` bg-primary transition font-bold text-xl uppercase w-1/2 py-2 rounded-xl mt-4`}
+          >
+            Saltar
+          </button>
+          <button
             onClick={handleSpin}
             disabled={choresSelected.length === SECTIONS_WHEEL}
             className={` disabled:bg-neutral-400 disabled:text-textGray bg-primary transition font-bold text-xl uppercase w-1/2 py-2 rounded-xl mt-4`}
           >
             ¡Girar!
-          </button>
-          <button
-            // onClick={() => handleNext('/prepare')}
-            className={` bg-primary transition font-bold text-xl uppercase w-1/2 py-2 rounded-xl mt-4`}
-          >
-            Saltar
           </button>
         </div>
       </div>

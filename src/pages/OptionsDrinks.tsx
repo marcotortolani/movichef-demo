@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
+import { useState } from 'react'
 import { useLocation } from 'wouter'
 import { useStore } from '../store/AppStore'
 
@@ -21,6 +21,7 @@ import {
   IceIcon,
 } from '../utils/icons'
 import ButtonOption from '../components/ButtonOption'
+import RouletteChores from './RouletteChores'
 
 const INGREDIENTS = [
   {
@@ -88,14 +89,13 @@ const INGREDIENTS = [
 export default function OptionsDrinks() {
   const [_, navigate] = useLocation()
   // const userName = useStore((state) => state.userName)
-  const optionSelected = useStore((state) => state.optionSelected)
+  //const optionSelected = useStore((state) => state.optionSelected)
   const restrictionSelected = useStore((state) => state.restrictionSelected)
   const restrictionAdded = useStore((state) => state.restrictionAdded)
-  const dessertOptions = useStore((state) => state.dessertOptions)
-  const updateDessertOptions = useStore((state) => state.updateDessertOptions)
+  const drinkOptions = useStore((state) => state.drinkOptions)
+  const updateDrinkOptions = useStore((state) => state.updateDrinkOptions)
 
-  console.log(optionSelected)
-  console.log(restrictionSelected)
+  const [showRoulette, setShowRoulette] = useState(false)
 
   const handleNext = (path: string | null) => {
     if (path === null) return
@@ -103,20 +103,28 @@ export default function OptionsDrinks() {
   }
 
   const handleOption = (ingredient: string) => {
-    console.log(ingredient)
-    if (dessertOptions.ingredients.includes(ingredient)) {
-      updateDessertOptions({
-        ...dessertOptions,
-        ingredients: dessertOptions.ingredients.filter(
-          (item) => item !== ingredient
-        ),
+    if (drinkOptions[restrictionSelected].ingredients.includes(ingredient)) {
+      updateDrinkOptions({
+        ...drinkOptions,
+        [restrictionSelected]: {
+          ...drinkOptions[restrictionSelected],
+          ingredients: drinkOptions[restrictionSelected].ingredients.filter(
+            (item) => item !== ingredient
+          ),
+        },
       })
     }
 
-    if (!dessertOptions.ingredients.includes(ingredient)) {
-      updateDessertOptions({
-        ...dessertOptions,
-        ingredients: [...dessertOptions.ingredients, ingredient],
+    if (!drinkOptions[restrictionSelected].ingredients.includes(ingredient)) {
+      updateDrinkOptions({
+        ...drinkOptions,
+        [restrictionSelected]: {
+          ...drinkOptions[restrictionSelected],
+          ingredients: [
+            ...drinkOptions[restrictionSelected].ingredients,
+            ingredient,
+          ],
+        },
       })
     }
   }
@@ -134,12 +142,17 @@ export default function OptionsDrinks() {
           Selecciona los ingredientes que tienes en tu cocina:
         </p>
         <TemperatureSwitch
-          checked={dessertOptions.temperature === 'hot'}
+          checked={drinkOptions[restrictionSelected].temperature === 'hot'}
           setChecked={() =>
-            updateDessertOptions({
-              ...dessertOptions,
-              temperature:
-                dessertOptions.temperature === 'hot' ? 'cold' : 'hot',
+            updateDrinkOptions({
+              ...drinkOptions,
+              [restrictionSelected]: {
+                ...drinkOptions[restrictionSelected],
+                temperature:
+                  drinkOptions[restrictionSelected].temperature === 'hot'
+                    ? 'cold'
+                    : 'hot',
+              },
             })
           }
         />
@@ -154,7 +167,9 @@ export default function OptionsDrinks() {
                 key={ingredient.name}
                 label={ingredient.name}
                 icon={ingredient.icon}
-                isActive={dessertOptions.ingredients.includes(ingredient.name)}
+                isActive={drinkOptions[
+                  restrictionSelected
+                ].ingredients.includes(ingredient.name)}
                 isDisabled={
                   restrictionSelected === 'vegan' ? !ingredient.vegan : false
                 }
@@ -183,7 +198,7 @@ export default function OptionsDrinks() {
               Volver
             </button>
             <button
-              // onClick={() => handleNext(optionSelected)}
+              onClick={() => setShowRoulette(true)}
               disabled={restrictionSelected === null}
               className={` disabled:bg-neutral-300 disabled:text-neutral-500 bg-primary transition font-bold text-xl uppercase w-1/2 py-2 rounded-xl mt-4`}
             >
@@ -192,6 +207,11 @@ export default function OptionsDrinks() {
           </div>
         </section>
       </div>
+
+      <RouletteChores
+        show={showRoulette}
+        onClose={() => setShowRoulette(false)}
+      />
     </main>
   )
 }

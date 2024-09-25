@@ -9,6 +9,7 @@ const BeginUser = lazy(() => import('./pages/BeginUser'))
 const OptionsMeal = lazy(() => import('./pages/OptionsMeal'))
 const OptionsDessert = lazy(() => import('./pages/OptionsDessert'))
 const OptionsDrinks = lazy(() => import('./pages/OptionsDrinks'))
+const Recipes = lazy(() => import('./pages/Recipes'))
 
 function App() {
   const userName = useStore((state) => state.userName)
@@ -23,6 +24,7 @@ function App() {
         <Route path="/dinner" component={OptionsMeal} />
         <Route path="/dessert" component={OptionsDessert} />
         <Route path="/drinks" component={OptionsDrinks} />
+        <Route path="/recipes" component={Recipes} />
 
         <Route
           path="/*"

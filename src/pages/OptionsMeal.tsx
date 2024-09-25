@@ -156,7 +156,7 @@ const INGREDIENTS = {
 export default function OptionsMeal() {
   const [_, navigate] = useLocation()
   // const userName = useStore((state) => state.userName)
-  
+
   //const optionSelected = useStore((state) => state.optionSelected)
   const restrictionSelected = useStore((state) => state.restrictionSelected)
   const restrictionAdded = useStore((state) => state.restrictionAdded)
@@ -171,20 +171,28 @@ export default function OptionsMeal() {
   }
 
   const handleOption = (ingredient: string) => {
-    console.log(ingredient)
-    if (mealOptions.ingredients.includes(ingredient)) {
+    if (mealOptions[restrictionSelected].ingredients.includes(ingredient)) {
       updateMealOptions({
         ...mealOptions,
-        ingredients: mealOptions.ingredients.filter(
-          (item) => item !== ingredient
-        ),
+        [restrictionSelected]: {
+          ...mealOptions[restrictionSelected],
+          ingredients: mealOptions[restrictionSelected].ingredients.filter(
+            (item) => item !== ingredient
+          ),
+        },
       })
     }
 
-    if (!mealOptions.ingredients.includes(ingredient)) {
+    if (!mealOptions[restrictionSelected].ingredients.includes(ingredient)) {
       updateMealOptions({
         ...mealOptions,
-        ingredients: [...mealOptions.ingredients, ingredient],
+        [restrictionSelected]: {
+          ...mealOptions[restrictionSelected],
+          ingredients: [
+            ...mealOptions[restrictionSelected].ingredients,
+            ingredient,
+          ],
+        },
       })
     }
   }
@@ -203,11 +211,17 @@ export default function OptionsMeal() {
             Selecciona los ingredientes que tienes en tu cocina:
           </p>
           <TemperatureSwitch
-            checked={mealOptions.temperature === 'hot'}
+            checked={mealOptions[restrictionSelected].temperature === 'hot'}
             setChecked={() =>
               updateMealOptions({
                 ...mealOptions,
-                temperature: mealOptions.temperature === 'hot' ? 'cold' : 'hot',
+                [restrictionSelected]: {
+                  ...mealOptions[restrictionSelected],
+                  temperature:
+                    mealOptions[restrictionSelected].temperature === 'hot'
+                      ? 'cold'
+                      : 'hot',
+                },
               })
             }
           />
@@ -224,7 +238,9 @@ export default function OptionsMeal() {
                     key={ingredient.name}
                     label={ingredient.name}
                     icon={ingredient.icon}
-                    isActive={mealOptions.ingredients.includes(ingredient.name)}
+                    isActive={mealOptions[
+                      restrictionSelected
+                    ].ingredients.includes(ingredient.name)}
                     isDisabled={false}
                     onClick={() => handleOption(ingredient.name)}
                   />
@@ -236,7 +252,9 @@ export default function OptionsMeal() {
                     key={ingredient.name}
                     label={ingredient.name}
                     icon={ingredient.icon}
-                    isActive={mealOptions.ingredients.includes(ingredient.name)}
+                    isActive={mealOptions[
+                      restrictionSelected
+                    ].ingredients.includes(ingredient.name)}
                     isDisabled={
                       restrictionSelected === 'vegan'
                         ? !ingredient.vegan

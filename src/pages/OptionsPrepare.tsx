@@ -31,7 +31,7 @@ export default function OptionsPrepare() {
 
   const handleOption = (option: OptionType) => {
     if (optionSelected === option) {
-      setOptionSelected(null)
+      setOptionSelected('lunch')
       return
     }
     setOptionSelected(option)
@@ -39,7 +39,7 @@ export default function OptionsPrepare() {
 
   const handleRestriction = (restriction: RestrictionType) => {
     if (restrictionSelected === restriction) {
-      setRestrictionSelected(null)
+      setRestrictionSelected('omni')
       return
     }
     setRestrictionSelected(restriction)
@@ -117,7 +117,7 @@ export default function OptionsPrepare() {
           <h2 className=" font-black uppercase text-2xl">
             ¿Qué vas a preparar?
           </h2>
-          <div className=" w-2/3 grid grid-cols-2 gap-6 ">
+          <div className=" grid grid-cols-2 gap-6 ">
             <ButtonOption
               label="Almuerzo"
               icon={lunchIcon}

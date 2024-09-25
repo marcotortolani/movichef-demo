@@ -2,23 +2,53 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { OptionType, RestrictionType } from '../types/types'
 
+type TemperatureType = 'hot' | 'cold'
+type OptionsByRestriction = {
+  vegan: {
+    temperature: TemperatureType
+    ingredients: string[]
+  }
+  vegetarian: {
+    temperature: TemperatureType
+    ingredients: string[]
+  }
+  glutenFree: {
+    temperature: TemperatureType
+    ingredients: string[]
+  }
+  omni: {
+    temperature: TemperatureType
+    ingredients: string[]
+  }
+}
+
 type State = {
   userName: string | null
   optionSelected: OptionType
   restrictionSelected: RestrictionType
   restrictionAdded: string
-  mealOptions: {
-    temperature: 'hot' | 'cold'
-    ingredients: string[]
-  }
-  dessertOptions: {
-    temperature: 'hot' | 'cold'
-    ingredients: string[]
-  }
-  drinkOptions: {
-    temperature: 'hot' | 'cold'
-    ingredients: string[]
-  }
+  mealOptions: OptionsByRestriction
+  dessertOptions: OptionsByRestriction
+  drinkOptions: OptionsByRestriction
+}
+
+const optionsInitial = {
+  vegan: {
+    temperature: 'hot' as TemperatureType,
+    ingredients: [],
+  },
+  vegetarian: {
+    temperature: 'hot' as TemperatureType,
+    ingredients: [],
+  },
+  glutenFree: {
+    temperature: 'hot' as TemperatureType,
+    ingredients: [],
+  },
+  omni: {
+    temperature: 'hot' as TemperatureType,
+    ingredients: [],
+  },
 }
 
 type Action = {
@@ -34,22 +64,13 @@ type Action = {
 export const useStore = create(
   persist<State & Action>(
     (set) => ({
-      userName: null,
-      optionSelected: null,
-      restrictionSelected: null,
+      userName: '',
+      optionSelected: 'lunch',
+      restrictionSelected: 'omni',
       restrictionAdded: '',
-      mealOptions: {
-        temperature: 'hot',
-        ingredients: [],
-      },
-      dessertOptions: {
-        temperature: 'cold',
-        ingredients: [],
-      },
-      drinkOptions: {
-        temperature: 'cold',
-        ingredients: [],
-      },
+      mealOptions: optionsInitial,
+      dessertOptions: optionsInitial,
+      drinkOptions: optionsInitial,
 
       updateUserName: (userName) => set(() => ({ userName: userName })),
       setOption: (optionSelected) =>
