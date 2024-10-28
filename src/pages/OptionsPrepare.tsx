@@ -51,7 +51,7 @@ export default function OptionsPrepare() {
   }
 
   return (
-    <main className=" bg-bkg w-full h-dvh flex flex-col items-center justify-evenly overflow-hidden gap-2 px-2">
+    <main className=" bg-bkg w-full h-dvh min-h-[650px] flex flex-col items-center justify-evenly overflow-hidden gap-2 px-2 py-20">
       <a href="/" className=" w-full">
         <img
           className=" w-1/4 max-w-[150px] mx-auto mt-4"
@@ -59,7 +59,7 @@ export default function OptionsPrepare() {
           alt="Logo Brand Light"
         />
       </a>
-      <div className=" mt-10 flex items-center gap-2">
+      <div className=" mt-6 flex items-center gap-2">
         <p className=" font-poppinsExtBold uppercase text-xl">{userName}</p>
         <button
           type="button"
@@ -117,7 +117,7 @@ export default function OptionsPrepare() {
           <h2 className=" font-black uppercase text-2xl">
             ¿Qué vas a preparar?
           </h2>
-          <div className=" grid grid-cols-2 gap-6 ">
+          <div className="grid grid-cols-2 gap-6 ">
             <ButtonOption
               label="Almuerzo"
               icon={lunchIcon}
@@ -158,12 +158,12 @@ export default function OptionsPrepare() {
             section === 2
               ? ' -translate-x-full scale-100 '
               : ' translate-x-[200%] scale-y-75'
-          } w-full h-full transition-all duration-300 ease-in-out flex-shrink-0 flex flex-col items-center justify-evenly`}
+          } w-full h-full pb-10 transition-all duration-300 ease-in-out flex-shrink-0 flex flex-col items-center justify-evenly gap-0`}
         >
           <h2 className=" font-black uppercase text-2xl">
             ¿Qué prefieres comer?
           </h2>
-          <div className=" grid grid-cols-2 gap-6 ">
+          <div className="grid grid-cols-2 gap-6 ">
             <ButtonOption
               label="Vegano"
               icon={veganOption}
@@ -189,7 +189,7 @@ export default function OptionsPrepare() {
               isActive={restrictionSelected === 'omni'}
             />
           </div>
-          <div className=" w-full max-w-sm flex flex-col items-center gap-2 px-4 ">
+          <div className=" w-full max-w-sm mt-4 flex flex-col items-center gap-2 px-4 ">
             <label htmlFor="name" className=" font-poppinsReg text-sm">
               ¿Tienes alguna restricción alimenticia?
             </label>

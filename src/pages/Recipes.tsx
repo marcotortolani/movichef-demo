@@ -61,60 +61,61 @@ export default function Recipes() {
   )
 
   return (
-    <main className=" bg-bkg w-full h-dvh flex flex-col items-center gap-6  overflow-hidden">
-      <a href="/" className=" w-full">
-        <img
-          className=" w-1/4 max-w-[150px] mx-auto mt-4"
-          src={logoDarkBrand}
-          alt="Logo Brand Light"
-        />
-      </a>
-      <div className=" w-full flex flex-col items-center gap-2 px-6">
-        <h2 className=" text-center font-poppinsExtBold text-2xl text-black">
-          ¡Bienvenido/a {userName}!
-        </h2>
-        <p className=" font-poppinsReg text-center text-[0.7rem] leading-4 text-textGray">
-          Hoy te propongo una deliciosa receta de Pollo con Verduras al Horno.
-          Esta receta combina la jugosidad del pollo con la frescura y nutientes
-          de las verduras, todo en un solo plato. Es una opción saludable y
-          fácil de preparar, ideal para una comida equilibrada y sabrosa.
-        </p>
-      </div>
-      <div className=" w-full">
-        <section className=" w-full">
-          <h3 className=" w-full bg-primary font-poppinsExtBold text-textDark text-center text-2xl py-1.5">
-            Pollo al horno con verduras
-          </h3>
-          <div className=" w-full px-4 py-4 grid grid-cols-3 ">
-            <div className=" py-1.5 flex flex-col items-center justify-between gap-3 border-r-[1px] border-r-black ">
-              <p className=" font-poppinsReg text-[0.7rem] leading-3 text-center">
-                Tiempo de preparación
-              </p>
-              <p className=" font-poppinsBold text-sm leading-3 text-center">
-                40 min
-              </p>
-            </div>
-            <div className=" py-1.5 flex flex-col items-center justify-between gap-3 border-r-[1px] border-r-black ">
-              <p className=" font-poppinsReg text-[0.7rem] leading-3 text-center">
-                Tipo de plato
-              </p>
-              <p className=" font-poppinsBold text-sm leading-3 text-center">
-                Principal
-              </p>
-            </div>
-            <div className=" py-1.5 flex flex-col items-center justify-between gap-3">
-              <p className=" font-poppinsReg text-[0.7rem] leading-3 text-center">
-                Dificultad
-              </p>
-              <p className=" font-poppinsBold text-sm leading-3 text-center">
-                Intermedio
-              </p>
-            </div>
-          </div>
-        </section>
+    <main className=" bg-bkg w-full h-dvh min-h-screen flex flex-col items-center gap-6  overflow-auto">
+      <div className="relative w-full max-w-screen-md h-full flex flex-col items-center  ">
+        <a href="/" className="relative w-full">
+          <img
+            className=" w-1/4 max-w-[150px] mx-auto mt-4"
+            src={logoDarkBrand}
+            alt="Logo Brand Light"
+          />
+        </a>
+        <div className="relative w-full max-w-[500px] my-2 md:my-3 lg:my-4 flex flex-col items-center gap-2 px-6">
+          <h2 className=" text-center font-poppinsExtBold text-2xl md:text-3xl text-black">
+            ¡Bienvenido/a {userName}!
+          </h2>
+          <p className=" font-poppinsReg text-center text-[0.7rem] md:text-sm leading-4 text-textGray">
+            Hoy te propongo una deliciosa receta de Pollo con Verduras al Horno.
+            Esta receta combina la jugosidad del pollo con la frescura y
+            nutientes de las verduras, todo en un solo plato. Es una opción
+            saludable y fácil de preparar, ideal para una comida equilibrada y
+            sabrosa.
+          </p>
+        </div>
 
-        <section className=" w-full">
-          <div className=" relative w-full bg-primary grid grid-cols-2">
+        <section className=" relative bg-bkg w-full h-fit ">
+          <header className=" z-20 sticky top-0 bg-bkg w-full h-fit shadow-md shadow-black/20">
+            <h3 className=" w-full bg-primary font-poppinsExtBold text-textDark text-center text-2xl py-1.5">
+              Pollo al horno con verduras
+            </h3>
+            <div className=" w-full px-4 py-4 grid grid-cols-3 ">
+              <div className=" py-1.5 flex flex-col items-center justify-between gap-3 border-r-[1px] border-r-black ">
+                <p className=" font-poppinsReg text-[0.7rem] md:text-sm leading-3 text-center">
+                  Tiempo de preparación
+                </p>
+                <p className=" font-poppinsBold text-sm md:text-base leading-3 text-center">
+                  40 min
+                </p>
+              </div>
+              <div className=" py-1.5 flex flex-col items-center justify-between gap-3 border-r-[1px] border-r-black ">
+                <p className=" font-poppinsReg text-[0.7rem] md:text-sm leading-3 text-center">
+                  Tipo de plato
+                </p>
+                <p className=" font-poppinsBold text-sm md:text-base leading-3 text-center">
+                  Principal
+                </p>
+              </div>
+              <div className=" py-1.5 flex flex-col items-center justify-between gap-3">
+                <p className=" font-poppinsReg text-[0.7rem] md:text-sm leading-3 text-center">
+                  Dificultad
+                </p>
+                <p className=" font-poppinsBold text-sm md:text-base leading-3 text-center">
+                  Intermedio
+                </p>
+              </div>
+            </div>
+          </header>
+          <div className="  w-full bg-primary grid grid-cols-2">
             <motion.span
               initial={{ x: 0 }}
               animate={{ x: section === 'ingredients' ? 0 : '100%' }}
@@ -130,7 +131,7 @@ export default function Recipes() {
               }}
               type="button"
               onClick={() => setSection('ingredients')}
-              className={` py-2 text-textDark `}
+              className={` py-2 text-textDark md:border-r-2 md:border-r-black/30 `}
             >
               Ingredientes
             </motion.button>
@@ -150,7 +151,7 @@ export default function Recipes() {
             </motion.button>
           </div>
 
-          <div className=" w-full h-fit flex ">
+          <div className=" w-full h-fit flex  ">
             <motion.div
               initial={{ opacity: 100, x: 0 }}
               animate={{
@@ -197,7 +198,7 @@ export default function Recipes() {
                 section === 'preparation' ? 'block' : 'hidden'
               } w-full h-fit`}
             >
-              <ul className=" w-full h-fit px-6 py-4 flex flex-col gap-4 overflow-y-scroll">
+              <ul className=" w-full h-fit px-6 py-4 flex flex-col gap-4 ">
                 {STEPS.map(({ step, text }, i) => (
                   <ItemStep key={`${i}-${step}`} step={step} text={text} />
                 ))}

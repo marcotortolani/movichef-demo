@@ -27,6 +27,7 @@ type State = {
   optionSelected: OptionType
   restrictionSelected: RestrictionType
   restrictionAdded: string
+  ingredientsAdded: string
   mealOptions: OptionsByRestriction
   dessertOptions: OptionsByRestriction
   drinkOptions: OptionsByRestriction
@@ -56,6 +57,7 @@ type Action = {
   setOption: (optionSelected: State['optionSelected']) => void
   setRestriction: (restrictionSelected: State['restrictionSelected']) => void
   updateRestrictionAdded: (restrictionAdded: State['restrictionAdded']) => void
+  updateIngredientsAdded: (ingredientsAdded: State['ingredientsAdded']) => void
   updateMealOptions: (mealOptions: State['mealOptions']) => void
   updateDessertOptions: (dessertOptions: State['dessertOptions']) => void
   updateDrinkOptions: (drinksOptions: State['drinkOptions']) => void
@@ -68,6 +70,7 @@ export const useStore = create(
       optionSelected: 'lunch',
       restrictionSelected: 'omni',
       restrictionAdded: '',
+      ingredientsAdded: '',
       mealOptions: optionsInitial,
       dessertOptions: optionsInitial,
       drinkOptions: optionsInitial,
@@ -83,6 +86,8 @@ export const useStore = create(
         })),
       updateRestrictionAdded: (restrictionAdded) =>
         set(() => ({ restrictionAdded: restrictionAdded })),
+      updateIngredientsAdded: (ingredientsAdded) =>
+        set(() => ({ ingredientsAdded: ingredientsAdded })),
       updateMealOptions: (mealOptions) =>
         set(() => ({ mealOptions: mealOptions })),
       updateDessertOptions: (dessertOptions) =>

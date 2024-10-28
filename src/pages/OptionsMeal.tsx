@@ -159,7 +159,10 @@ export default function OptionsMeal() {
 
   //const optionSelected = useStore((state) => state.optionSelected)
   const restrictionSelected = useStore((state) => state.restrictionSelected)
-  const restrictionAdded = useStore((state) => state.restrictionAdded)
+  const ingredientsAdded = useStore((state) => state.ingredientsAdded)
+  const updateIngredientsAdded = useStore(
+    (state) => state.updateIngredientsAdded
+  )
   const mealOptions = useStore((state) => state.mealOptions)
   const updateMealOptions = useStore((state) => state.updateMealOptions)
 
@@ -197,8 +200,8 @@ export default function OptionsMeal() {
     }
   }
   return (
-    <main className=" bg-bkg relative w-full h-dvh overflow-hidden ">
-      <div className=" w-full h-full pb-20 flex flex-col items-center justify-evenly overflow-x-hidden gap-2 px-2">
+    <main className=" bg-bkg relative w-full h-dvh min-h-[700px] flex flex-col items-center overflow-hidden ">
+      <div className=" w-full max-w-screen-sm h-full pb-10 flex flex-col items-center justify-evenly overflow-x-hidden gap-2 px-2">
         <a href="/" className=" w-full">
           <img
             className=" w-1/4 max-w-[150px] mx-auto mt-4"
@@ -207,7 +210,7 @@ export default function OptionsMeal() {
           />
         </a>
         <div className=" mt-10 w-full px-4 flex items-center justify-between ">
-          <p className=" w-2/3 font-poppinsMed leading-5">
+          <p className=" w-2/3 md:w-4/5 lg:text-lg font-poppinsMed leading-5">
             Selecciona los ingredientes que tienes en tu cocina:
           </p>
           <TemperatureSwitch
@@ -230,7 +233,7 @@ export default function OptionsMeal() {
           <section
             className={`w-full h-full px-4 transition-all duration-300 ease-in-out flex-shrink-0 flex flex-col items-center justify-evenly`}
           >
-            <div className=" w-full  grid grid-cols-4 grid-rows-3 gap-4 ">
+            <div className=" w-full  grid grid-cols-4 grid-rows-3 gap-4 md:gap-6 lg:gap-8 ">
               {(restrictionSelected === 'omni' ||
                 restrictionSelected === 'glutenFree') &&
                 INGREDIENTS['omni'].map((ingredient) => (
@@ -271,9 +274,9 @@ export default function OptionsMeal() {
               <input
                 type="text"
                 id="name"
-                value={restrictionAdded}
+                value={ingredientsAdded}
                 placeholder="Escribe aquí..."
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => updateIngredientsAdded(e.target.value)}
                 className=" w-full placeholder:font-poppinsReg font-poppinsMed outline-primary placeholder:text-placeholder  text-sm rounded-md px-4 py-2"
               />
             </div>
