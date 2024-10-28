@@ -1,3 +1,4 @@
+//import { useEffect } from 'react'
 import { lazy, Suspense } from 'react'
 import { Route, Switch } from 'wouter'
 import { useStore } from './store/AppStore'
@@ -28,7 +29,7 @@ function App() {
 
         <Route
           path="/*"
-          component={userName !== null ? OptionsPrepare : Onboarding}
+          component={userName !== '' ? OptionsPrepare : Onboarding}
         />
 
         {/* Default route in a switch */}
