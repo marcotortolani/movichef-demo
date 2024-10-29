@@ -51,7 +51,7 @@ export default function OptionsPrepare() {
   }
 
   return (
-    <main className=" bg-bkg w-full h-dvh min-h-[650px] flex flex-col items-center justify-evenly overflow-hidden gap-2 px-2 py-20">
+    <main className=" bg-bkg w-full h-dvh min-h-[680px] flex flex-col items-center justify-evenly overflow-hidden gap-2 px-2 ">
       <a href="/" className=" w-full">
         <img
           className=" w-1/4 max-w-[150px] mx-auto mt-4"
