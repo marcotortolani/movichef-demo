@@ -115,10 +115,11 @@ export default function Recipes() {
               </div>
             </div>
           </header>
-          <div className="  w-full bg-primary grid grid-cols-2">
+          <div className=" relative w-full bg-primary grid grid-cols-2">
             <motion.span
               initial={{ x: 0 }}
               animate={{ x: section === 'ingredients' ? 0 : '100%' }}
+              transition={{ duration: 0.5 }}
               className={` absolute left-0 bottom-0 w-1/2 h-[3px] bg-black`}
             ></motion.span>
 
@@ -158,9 +159,12 @@ export default function Recipes() {
                 opacity: section === 'ingredients' ? 100 : 0,
                 x: section === 'ingredients' ? 0 : '-100%',
               }}
+              transition={{ duration: 0.5  }}
+
               className={`${
                 section === 'ingredients' ? 'block' : 'hidden'
               } w-full h-fit`}
+              
             >
               <ul className=" w-full h-fit flex flex-col gap-1">
                 {INGREDIENTS.map(({ ingredient, amount }, i) => (
@@ -194,6 +198,7 @@ export default function Recipes() {
                 opacity: section === 'preparation' ? 100 : 0,
                 x: section === 'preparation' ? 0 : '100%',
               }}
+              transition={{ duration: 0.5 }}
               className={`${
                 section === 'preparation' ? 'block' : 'hidden'
               } w-full h-fit`}
