@@ -19,8 +19,8 @@ const ButtonOption = ({
     <div className=" w-full max-w-[140px] h-full flex flex-col items-center gap-2 ">
       <motion.button
         initial={{ scale: 1 }}
-        whileHover={{ scale: 1.4 }}
-        whileTap={{ scale: 1.6 }}
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 1.1 }}
         animate={{ scale: isActive ? 1.05 : 1 }}
         type="button"
         disabled={isDisabled}
@@ -28,7 +28,7 @@ const ButtonOption = ({
           isActive && !isDisabled
             ? 'bg-primary shadow-lg shadow-black/20 '
             : 'bg-white shadow-md '
-        } disabled:bg-neutral-300 disabled:shadow-inner disabled:shadow-black/20 transition-all duration-200 ease-in-out p-3.5 lg:p-6 w-full aspect-square overflow-hidden rounded-lg md:rounded-xl`}
+        } disabled:bg-neutral-300 disabled:shadow-inner disabled:shadow-black/20 transition-all duration-200 ease-in-out p-3.5 md:p-5 lg:p-6 w-full aspect-square overflow-hidden rounded-lg md:rounded-xl`}
         onClick={onClick}
       >
         {Icon && <Icon w="100%" h="100%" fill={isDisabled ? '#AAA' : '#000'} />}
@@ -36,7 +36,7 @@ const ButtonOption = ({
       <h4
         className={`${
           isDisabled ? ' text-textGray/50' : 'text-textDark'
-        } font-poppinsMed text-[0.7rem] lg:text-base text-center leading-3 uppercase`}
+        } font-poppinsMed text-[0.7rem] md:text-sm lg:text-base text-center leading-3 lg:leading-4 uppercase`}
       >
         {label}
       </h4>

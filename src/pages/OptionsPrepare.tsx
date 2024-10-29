@@ -241,15 +241,15 @@ const ButtonOption = ({
     <div className=" flex flex-col items-center gap-2">
       <motion.button
         initial={{ scale: 1 }}
-        whileHover={{ scale: 1.4 }}
-        whileTap={{ scale: 1.6 }}
+        whileHover={{ scale: 1.2 }}
+        // whileTap={{ scale: 1.1 }}
         animate={{ scale: isActive ? 1.05 : 1 }}
         type="button"
         className={` ${
           isActive
             ? 'bg-primary shadow-lg shadow-black/30 '
             : 'bg-white shadow-md '
-        } transition-all duration-200 ease-in-out p-6 size-28 rounded-xl`}
+        } active:scale-100 transition-all duration-200 ease-in-out p-6 size-28 rounded-xl`}
         onClick={onClick}
       >
         {icon && (

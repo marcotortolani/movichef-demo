@@ -27,7 +27,7 @@ export default function BeginUser() {
       <h2 className=" font-poppinsExtBold font-black uppercase text-2xl">
         ¡Empecemos!
       </h2>
-      <p className=" text-textGray font-poppinsReg text-center text-xs leading-4 ">
+      <p className="max-w-md text-textGray font-poppinsReg text-center text-xs leading-4 md:text-sm md:leading-5 lg:text-base lg:leading-6 ">
         A continuación, te presentaremos algunas opciones que podrás elegir para
         poder ofrecerte una receta completamente personalizada.
       </p>
@@ -38,7 +38,7 @@ export default function BeginUser() {
       />
 
       <div className=" w-full max-w-sm flex flex-col items-start gap-1 px-4 ">
-        <label htmlFor="name" className=" font-poppinsSemBold text-sm">
+        <label htmlFor="name" className=" font-poppinsSemBold text-sm md:text-base">
           ¿Cuál es tu nombre?
         </label>
         <input

@@ -307,12 +307,12 @@ const RuletaSection = ({
     <div
       className={` ${
         section === 1
-          ? ' -top-14 md:-top-[70px] -left-[50px] md:-left-[58px] -rotate-[43deg] '
+          ? ' -top-14 -left-[50px] -rotate-[43deg] md:-top-[68px] md:-left-[62px]'
           : section === 2
-          ? ' top-12 -left-14 -rotate-[134deg]'
+          ? ' top-12 -left-14 -rotate-[134deg] md:top-[58px] md:-left-[66px]'
           : section === 3
-          ? ' top-14 left-[51px] rotate-[136deg] '
-          : ' -top-12 left-[50px] rotate-[46deg] '
+          ? ' top-14 left-[51px] rotate-[136deg] md:top-[64px] md:left-[62px]'
+          : ' -top-12 left-[50px] rotate-[46deg] md:-top-[66px] md:left-[62px] '
       }  z-50 absolute inset-1 w-full h-full transform font-poppinsBold`}
     >
       <CurvedText text={text} radius={10} />
